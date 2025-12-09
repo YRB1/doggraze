@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOGraze - Premium Dog Treats & Accessories</title>
+    
+<style>
+      /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Root Variables */
+        :root {
+            --primary-color: #ff7f50;
+            --primary-hover: #ff4500;
+            --dark-bg: #040305;
+            --light-text: #f8f4f2;
+            --accent-gray: #f5f5f5;
+            --transition-speed: 0.3s;
+        }
+
+        /* Body */
+        body {
+            background: linear-gradient(to bottom, rgb(255, 255, 255), rgb(2, 12, 59));
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        #header {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 20px 40px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+        }
+
+        nav li {
+            list-style: none;
+            margin-left: 10px;
+            
+        }
+
+        nav a {
+            text-decoration: none;
+            color: rgb(228, 228, 228);
+            font-weight: bold;
+            transition: color 0.3s, font-size 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: block;
+            
+        }
+
+        nav a:hover {
+            color: azure;
+            font-size: larger;
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background-color: transparent;
+            border: none;
+            color: rgb(228, 228, 228);
+            font-size: 28px;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: url('https://www.farmerpetes.com.au/cdn/shop/articles/Happy_Lab.jpg?v=1684406977');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-top: 15px;
+            line-height: 1.8;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 18px 40px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all var(--transition-speed);
+            margin-top: 40px;
+            box-shadow: 0 4px 15px rgba(255, 127, 80, 0.4);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.5);
+        }
+
+        /* About Section */
+        .about {
+            padding: 130px 40px;
+            text-align: center;
+            margin: 0 auto;
+            background-color: #000;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #f6f6f6;
+        }
+
+        .about p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #eaeaea;
+             max-width: 850px;
+            margin: 0 auto;      /* centers the block horizontally */
+            text-align: center;
+        }
+
+        /* Products Section */
+        .products {
+            padding: 80px 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .products h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #040305;
+        }
+
+        .boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .box {
+            background-color: var(--accent-gray);
+            padding: 40px 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .box p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 40px;
+            text-align: center;
+            background-color: #000;
+        }
+
+        .features h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #fbfbfb;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            padding: 30px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .feature-item p {
+            color: #efebeb;
+            font-size: 1.1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .testimonials h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #040305;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 80px 40px;
+            text-align: center;
+            background-color: #000;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #fcfafe;
+        }
+
+        .contact-info {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: #555;
+        }
+
+        .contact-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-hover);
+        }
+
+        .map-container {
+            margin-top: 40px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 40px 40px;
+            background-color: #000;
+            color: #d4a574;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        footer h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        footer p {
+            line-height: 1.9;
+            margin: 15px 0;
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            margin: 30px 0;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.2rem;
+            transition: color var(--transition-speed);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-hover);
+        }
+
+        .copyright {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            #header {
+                padding: 20px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+
+            nav {
+                width: 100%;
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                margin-top: 20px;
+            }
+
+            nav.active {
+                max-height: 500px;
+            }
+
+            nav li {
+                margin: 10px 0;
+                width: 100%;
+            }
+
+            nav a {
+                width: 100%;
+                text-align: center;
+                padding: 12px;
+            }
+
+            .hero {
+                height: 80vh;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+
+            .about, .products, .features, .testimonials, .contact {
+                padding: 50px 20px;
+            }
+
+            .boxes, .feature-grid, .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1rem;
+            }
+        }
+</style>
+
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">🐾 DOGraze</div>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <nav id="nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main id="home" class="hero">
+        <div class="hero-content">
+            <h1>DOGraze</h1>
+            <h2>Delicious Treats for Your Furry Friends</h2>
+            <p><i>Discover our most popular items and spoil your pets today!</i></p>
+            <a href="#products" class="cta-button">Shop Now</a>
+        </div>
+    </main>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>About DOGraze</h2>
+        <p>Welcome to DOGraze, your local pet treat specialists! We've been serving the community since 2020 with premium, healthy treats and accessories for your beloved dogs. Every product is carefully selected to ensure the highest quality and happiness for your furry companions.</p>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products">
+        <h2>Our Products</h2>
+        <div class="boxes">
+            <div class="box">
+                <h3>🦴 Natural Treats</h3>
+                <p>100% natural, grain-free treats made with real meat and vegetables</p>
+            </div>
+            <div class="box">
+                <h3>🍪 Biscuits & Cookies</h3>
+                <p>Crunchy and delicious biscuits in various flavors</p>
+            </div>
+            <div class="box">
+                <h3>🥩 Chews & Bones</h3>
+                <p>Long-lasting chews to keep your dog entertained</p>
+            </div>
+            <div class="box">
+                <h3>🎾 Toys & Accessories</h3>
+                <p>Durable toys and stylish accessories for playtime</p>
+            </div>
+            <div class="box">
+                <h3>🥕 Healthy Snacks</h3>
+                <p>Nutritious snacks packed with vitamins and minerals</p>
+            </div>
+            <div class="box">
+                <h3>🎁 Gift Boxes</h3>
+                <p>Curated gift boxes perfect for special occasions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose DOGraze?</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <h3>✨ Premium Quality</h3>
+                <p>Only the finest ingredients and materials for your pet's safety and health</p>
+            </div>
+            <div class="feature-item">
+                <h3>🏪 Local Business</h3>
+                <p>Proudly serving our community with personalized service and care</p>
+            </div>
+            <div class="feature-item">
+                <h3>🌱 Natural & Healthy</h3>
+                <p>All-natural products with no artificial preservatives or fillers</p>
+            </div>
+            <div class="feature-item">
+                <h3>💝 Expert Advice</h3>
+                <p>Our knowledgeable staff helps you choose the perfect products</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial">
+                <p>"My dog absolutely loves the natural treats from DOGraze! The quality is outstanding and I love supporting a local business."</p>
+                <div class="testimonial-author">- Sarah M.</div>
+            </div>
+            <div class="testimonial">
+                <p>"The staff is so helpful and knowledgeable. They helped me find the perfect chew toys for my energetic pup!"</p>
+                <div class="testimonial-author">- James T.</div>
+            </div>
+            <div class="testimonial">
+                <p>"Best dog treats in town! My picky eater finally found something she loves. Highly recommend DOGraze!"</p>
+                <div class="testimonial-author">- Emily R.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2>Visit Us Today</h2>
+        <div class="contact-info">
+            <p>📍 <strong>Address:</strong> 123 Pet Street, Dogtown, DT1 2AB</p>
+            <p>📞 <strong>Phone:</strong> <a href="tel:01234567890">01234 567 890</a></p>
+            <p>✉️ <strong>Email:</strong> <a href="mailto:hello@dograze.co.uk">hello@dograze.co.uk</a></p>
+            <p>🕒 <strong>Hours:</strong> Mon-Sat: 9am-6pm | Sun: 10am-4pm</p>
+            
+     <!-- Map with red marker at DOGraze -->
+<div class="map-container" style="width:100%; height:450px; border:1px solid #ccc;">
+  <iframe 
+    src="https://www.google.com/maps?q=DOGraze,Etwall,Derbyshire,UK&output=embed" 
+    width="100%" 
+    height="100%" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy">
+  </iframe>
+</div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <h3>DOGraze</h3>
+            <p>Your trusted local source for premium dog treats and accessories. We're passionate about keeping tails wagging and pets happy!</p>
+            
+            <div class="social-links">
+                <a href="#" target="_blank">Facebook</a>
+                <a href="#" target="_blank">Instagram</a>
+                <a href="#" target="_blank">Twitter</a>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2024 DOGraze. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu after clicking
+                    document.getElementById('nav').classList.remove('active');
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.getElementById('nav');
+            const toggle = document.querySelector('.menu-toggle');
+            
+            if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+                nav.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
